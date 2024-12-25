@@ -16,8 +16,20 @@ const getBlogByIdFromDB = async (id: string) => {
   return result;
 };
 
+const updateBlogIntoDB = async (id: string, blog: TBlog) => {
+  const result = await Blog.findByIdAndUpdate(id, blog, { new: true });
+  return result;
+};
+
+const deleteBlogFromDB = async (id: string) => {
+  const result = await Blog.findByIdAndDelete(id);
+  return result;
+};
+
 export const BlogServices = {
   createBlogIntoDB,
   getAllBlogsFromDB,
   getBlogByIdFromDB,
+  updateBlogIntoDB,
+  deleteBlogFromDB,
 };

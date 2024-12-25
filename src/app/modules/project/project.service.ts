@@ -16,8 +16,20 @@ const getProjectByIdFromDB = async (id: string) => {
   return result;
 };
 
+const updateProjectIntoDB = async (id: string, project: TProject) => {
+  const result = await Project.findByIdAndUpdate(id, project, { new: true });
+  return result;
+};
+
+const deleteProjectFromDB = async (id: string) => {
+  const result = await Project.findByIdAndDelete(id);
+  return result;
+};
+
 export const ProjectServices = {
   createProjectIntoDB,
   getProjectsFromDB,
   getProjectByIdFromDB,
+  updateProjectIntoDB,
+  deleteProjectFromDB,
 };

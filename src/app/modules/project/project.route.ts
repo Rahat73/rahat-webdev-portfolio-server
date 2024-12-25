@@ -10,4 +10,8 @@ router.get('/:id', ProjectControllers.getProjectById);
 
 router.post('/', auth(), ProjectControllers.createProject);
 
+router.patch('/:id', auth(), ProjectControllers.updateProject);
+
+router.delete('/:id', auth(), ProjectControllers.deleteProject);
+
 export const ProjectRoutes = router;

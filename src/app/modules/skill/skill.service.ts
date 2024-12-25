@@ -36,7 +36,54 @@ const getSkillsFromDB = async () => {
   return skills;
 };
 
+const updateSkillIntoDB = async (
+  id: string,
+  payload: {
+    type: string;
+    data: TTechnicalSkill | TSoftSkill;
+  },
+) => {
+  const { type, data } = payload;
+
+  if (!['technical', 'soft'].includes(type)) {
+    throw new AppError(
+      400,
+      'Invalid type. Allowed values are "technical" or "soft".',
+    );
+  }
+
+  const result = await Skill.updateOne(
+    { [`${type}._id`]: id },
+    { $set: { [`${type}.$`]: data } },
+  );
+
+  if (result.modifiedCount === 0) {
+    throw new AppError(404, `Skill with ID ${id} not found.`);
+  }
+
+  return result;
+};
+
+const deleteSkillFromDB = async (id: string, type: string) => {
+  if (!['technical', 'soft'].includes(type)) {
+    throw new AppError(
+      400,
+      "Invalid skill type. Must be 'technical' or 'soft'.",
+    );
+  }
+
+  const result = await Skill.updateOne({}, { $pull: { [type]: { _id: id } } });
+
+  if (result.modifiedCount === 0) {
+    throw new AppError(404, `Skill with ID ${id} not found.`);
+  }
+
+  return result;
+};
+
 export const SkillServices = {
   addSkillIntoDB,
   getSkillsFromDB,
+  updateSkillIntoDB,
+  deleteSkillFromDB,
 };

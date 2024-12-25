@@ -10,4 +10,8 @@ router.get('/:id', BlogControllers.getBlogById);
 
 router.post('/', auth(), BlogControllers.createBlog);
 
+router.patch('/:id', auth(), BlogControllers.updateBlog);
+
+router.delete('/:id', auth(), BlogControllers.deleteBlog);
+
 export const BlogRoutes = router;

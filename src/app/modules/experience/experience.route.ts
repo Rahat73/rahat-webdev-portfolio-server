@@ -8,4 +8,8 @@ router.get('/', ExperienceControllers.getExperiences);
 
 router.post('/', auth(), ExperienceControllers.addExperience);
 
+router.patch('/:id', auth(), ExperienceControllers.updateExperience);
+
+router.delete('/:id', auth(), ExperienceControllers.deleteExperience);
+
 export const ExperienceRoutes = router;

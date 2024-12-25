@@ -15,4 +15,13 @@ router.post(
   SkillController.addSkill,
 );
 
+router.patch(
+  '/:id',
+  auth(),
+  validationHandler(SkillValidations.SkillSchema),
+  SkillController.updateSkill,
+);
+
+router.delete('/:id', auth(), SkillController.deleteSkill);
+
 export const SkillRoutes = router;

@@ -24,7 +24,34 @@ const getExperiences = catchAsync(async (req, res) => {
   });
 });
 
+const updateExperience = catchAsync(async (req, res) => {
+  const result = await ExperienceServices.updateExperienceIntoDB(
+    req.params.id,
+    req.body,
+  );
+
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Experience updated successfully',
+    data: result,
+  });
+});
+
+const deleteExperience = catchAsync(async (req, res) => {
+  const result = await ExperienceServices.deleteExperienceFromDB(req.params.id);
+
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Experience deleted successfully',
+    data: result,
+  });
+});
+
 export const ExperienceControllers = {
   addExperience,
   getExperiences,
+  updateExperience,
+  deleteExperience,
 };
