@@ -1,6 +1,8 @@
 import { Router } from 'express';
 import { SkillRoutes } from '../modules/skill/skill.route';
 import { AuthRoutes } from '../modules/auth/auth.route';
+import { BlogRoutes } from '../modules/blog/blog.route';
+import { ExperienceRoutes } from '../modules/experience/experience.route';
 
 const router = Router();
 
@@ -12,6 +14,14 @@ const moduleRoutes = [
   {
     path: '/skill',
     route: SkillRoutes,
+  },
+  {
+    path: '/experience',
+    route: ExperienceRoutes,
+  },
+  {
+    path: '/blog',
+    route: BlogRoutes,
   },
 ];
 

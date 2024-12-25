@@ -6,7 +6,7 @@ import auth from '../../middlewares/auth';
 
 const router = Router();
 
-router.get('/', auth(), SkillController.getSkills);
+router.get('/', SkillController.getSkills);
 
 router.post(
   '/',
