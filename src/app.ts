@@ -8,7 +8,12 @@ const app: Application = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: ['http://localhost:3000'],
+    origin: [
+      'https://rahat-webdev-portfolio-dashboard.vercel.app',
+      'https://rahat-webdev.netlify.app',
+      'http://localhost:3000',
+      'http://localhost:5173',
+    ],
     credentials: true,
   }),
 );
